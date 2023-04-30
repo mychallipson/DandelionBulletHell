@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk3ca6f2r4w1l"]
+
+[ext_resource type="Script" path="res://Seed/Seed.gd" id="1_6laun"]
+[ext_resource type="Texture2D" uid="uid://cqb0kyek4thvj" path="res://icon.svg" id="1_7tfh7"]
+
+[node name="Seed" type="Node2D"]
+script = ExtResource("1_6laun")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_7tfh7")
+
+[node name="Fall" type="Timer" parent="."]
+
+[node name="Launch" type="Timer" parent="."]
+
+[connection signal="timeout" from="Fall" to="." method="_on_fall_timeout"]
+[connection signal="timeout" from="Launch" to="." method="_on_launch_timeout"]
