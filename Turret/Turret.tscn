@@ -1,0 +1,156 @@
+[gd_scene load_steps=13 format=3 uid="uid://clkft7lmulwyp"]
+
+[ext_resource type="Script" path="res://Turret/Turret.gd" id="1_phglx"]
+[ext_resource type="Texture2D" uid="uid://dcaqorbifvmpe" path="res://assets/Grass.png" id="2_wapgn"]
+[ext_resource type="Texture2D" uid="uid://b8bqg3b4j8iix" path="res://assets/plant2.png" id="3_qudh4"]
+[ext_resource type="Texture2D" uid="uid://d3jr8kky7bbu1" path="res://assets/plant1.png" id="4_tum3r"]
+[ext_resource type="Texture2D" uid="uid://5twklhd1t47i" path="res://assets/plant3.png" id="5_m2uqf"]
+[ext_resource type="Texture2D" uid="uid://by3t7u0e5n0je" path="res://assets/plant4.png" id="6_vtkgn"]
+[ext_resource type="Texture2D" uid="uid://l76m4mv16sv7" path="res://assets/plant5.png" id="7_dhf6h"]
+[ext_resource type="Texture2D" uid="uid://cdp5wpl07wxkx" path="res://assets/plant6.png" id="8_1t34w"]
+[ext_resource type="Texture2D" uid="uid://g6q6c4wurmlr" path="res://assets/plant7.png" id="9_bsfiv"]
+[ext_resource type="Texture2D" uid="uid://c06c348sxhnq6" path="res://assets/plant8.png" id="10_ftk78"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1xb5"]
+size = Vector2(62, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w41xs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_bsfiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ftk78")
+}],
+"loop": true,
+"name": &"done_grow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_dhf6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1t34w")
+}],
+"loop": true,
+"name": &"first_shot",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tum3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qudh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m2uqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vtkgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dhf6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1t34w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bsfiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ftk78")
+}],
+"loop": false,
+"name": &"fullGrow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qudh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tum3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m2uqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vtkgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dhf6h")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_bsfiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ftk78")
+}],
+"loop": true,
+"name": &"max_growth",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_dhf6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1t34w")
+}],
+"loop": true,
+"name": &"second_shot",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_1t34w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bsfiv")
+}],
+"loop": true,
+"name": &"third_shot",
+"speed": 2.0
+}]
+
+[node name="Turret" type="Area2D"]
+script = ExtResource("1_phglx")
+
+[node name="TurretBody" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_x1xb5")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_wapgn")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+modulate = Color(0.411765, 0.14902, 0.756863, 1)
+offset_left = -22.0
+offset_top = -40.0
+offset_right = 25.0
+offset_bottom = -33.0
+max_value = 3.0
+step = 1.0
+show_percentage = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w41xs")
+animation = &"done_grow"
+speed_scale = 0.5
+
+[node name="GrowTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]

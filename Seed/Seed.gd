@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 @export var shotSpeed = 300;
 @export var fallSpeed = 100;
@@ -33,7 +33,6 @@ func _process(delta):
 		
 
 
-
 func _on_launch_timeout():
 	launch = false;
 	speed = fallSpeed;
@@ -43,5 +42,11 @@ func _on_launch_timeout():
 
 
 func _on_fall_timeout():
-	GameEngine.spawnDandelion(position);
-	queue_free();
+	if $ScreenVisibility.is_on_screen():
+		GameEngine.spawnTurret(position);
+		queue_free();
+
+
+func _on_body_entered(body):
+	if (body.name == "Player"):
+		body.take_damage();

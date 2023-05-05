@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://he0wvfqbr2oc"]
+
+[ext_resource type="Script" path="res://Bullets/PlayerBullet.gd" id="1_3epm2"]
+[ext_resource type="Texture2D" uid="uid://csvbfijffw2oo" path="res://assets/tool.png" id="2_uc6l0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtspe"]
+size = Vector2(47, 10)
+
+[node name="PlayerBullet" type="Area2D"]
+script = ExtResource("1_3epm2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_uc6l0")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_jtspe")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, -1)
+scale = Vector2(2.35, 0.5)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
