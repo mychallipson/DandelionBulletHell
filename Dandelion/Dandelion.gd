@@ -7,7 +7,7 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var delay = randf_range(0,2);
+	var delay = randf_range(0,1.5);
 	$SpreadDelay.one_shot = true;
 	$SpreadDelay.start(delay);
 	pass # Replace with function body.
@@ -40,10 +40,10 @@ func _on_spread_delay_timeout():
 
 func _on_animated_sprite_2d_animation_finished():
 	var rotations = random_rotations();
+	var flowerIndex = randi_range(0,numSeeds);
 	for i in range(0, numSeeds):
-		var newFlower = randi_range(0,10) < 1;
-		GameEngine.spawnSeed(position, rotations[i], newFlower);
-	var delay = randf_range(0,2);
+		GameEngine.spawnSeed(position, rotations[i], i == flowerIndex);
+	var delay = 2;
 	$AnimatedSprite2D.pause();
 	$SpreadDelay.start(delay);
 	pass # Replace with function body.
@@ -52,15 +52,21 @@ func takeDamage():
 	health = health - 1;
 	if health <= 0:
 		queue_free();
-		GameEngine.dandelionKill();
+		GameEngine.dandelionKillCount += 1;
 
 func updateHealth():
 	var healthBar = $HealthBar
 	healthBar.value = health;
-	
+
 	if health >= 10:
 		healthBar.visible = false;
 	elif health <= 0:
 		queue_free();
 	else:
 		healthBar.visible = true;
+
+
+func _on_body_entered(body):
+	if body.name == "Player":
+		body.take_damage();
+	pass # Replace with function body.

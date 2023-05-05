@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
-@export var speed = 200;
+@export var speed = 400;
 @export var clampToWindowBorders = true;
 var fireRate = 0.2;
 var health = 10;
+var invulnTime = 0.5;
+var canTakeDamage = true;
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	$Invulnerability.wait_time = invulnTime;
+	$Invulnerability.one_shot = true;
 	pass # Replace with function body.
 
 
@@ -34,9 +37,15 @@ func shoot():
 	$GunCD.start(fireRate);
 
 func take_damage():
-	health = health-1;
+	if (canTakeDamage):
+		health = health-1;
+		canTakeDamage = false;
+		$Invulnerability.start();
 	pass
 	
+func heal():
+	health = health+1;
+	health = min(health, 10);
 
 func updateHealth():
 	var healthBar = $HealthBar
@@ -48,3 +57,8 @@ func updateHealth():
 		GameEngine.gameOver();
 	else:
 		healthBar.visible = true;
+
+
+func _on_invulnerability_timeout():
+	canTakeDamage = true;
+	pass # Replace with function body.

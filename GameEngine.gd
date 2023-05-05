@@ -5,36 +5,37 @@ extends Node2D
 @onready var bulletScene = preload("res://Bullets/PlayerBullet.tscn");
 @onready var seedBulletScene = preload("res://Bullets/SeedBullet.tscn");
 @onready var turretScene = preload("res://Turret/Turret.tscn");
-@onready var gameOverScene = preload("res://GameOver.tscn");
+@onready var gameOverScene = preload("res://GameOver/GameOver.tscn");
 @onready var screenBorders = get_viewport().get_visible_rect().size;
 
-@export var spawnCount = 3;
-var seeds = [];
-var dandelions = [];
+@export var spawnCount = 2;
 var isGameOver = false;
 var dandelionDelay = 10;
 var spawnTimer = 0;
 var elapsedTime = 0;
 var dandelionKillCount = 0;
 var turretKillCount = 0;
+var spawnSeparation = 8;
+var seedsCaught = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func startGame():
 	for i in range(0, spawnCount):
 		var pos = Vector2(randi_range(0, screenBorders.x),randi_range(0, screenBorders.y));
 		spawnDandelion(pos);
-	pass # Replace with function body.
-
 
 func spawnSeed(newPosition, seedRotation, newFlower):
 	if isGameOver:
 		return;
 	var newSeed = seedScene.instantiate();
+	newSeed.newFlower = newFlower;
 	newSeed.position = newPosition;
 	newSeed.rotation = seedRotation;
-	newSeed.newFlower = newFlower && dandelions.size() < 10;
 	add_child(newSeed);
-	seeds.append(newSeed);
+
 
 func spawnDandelion(newPosition):
 	if isGameOver:
@@ -42,7 +43,7 @@ func spawnDandelion(newPosition):
 	var newDandelion = dandelionScene.instantiate();
 	newDandelion.position = newPosition;
 	add_child(newDandelion);
-	dandelions.append(newDandelion);
+
 	
 func shootBullet(vec, bulletPosition):
 	if isGameOver:
@@ -73,19 +74,14 @@ func gameOver():
 	get_tree().change_scene_to_packed(gameOverScene);
 	get_tree().paused = true;
 	pass;
-	
-func dandelionKill():
-	dandelionKillCount += 1;
-
-func turretKill():
-	turretKillCount += 1;
-	
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	spawnTimer += delta;
 	elapsedTime += delta;
-	if spawnTimer >= 10:
+	if spawnTimer >= spawnSeparation:
 		var pos = Vector2(randi_range(0, screenBorders.x),randi_range(0, screenBorders.y));
 		spawnDandelion(pos);
 		spawnTimer = 0;
+		spawnSeparation = max(spawnSeparation - 1, 3);
 	pass

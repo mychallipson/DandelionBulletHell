@@ -22,7 +22,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_area_entered(area):
-	if ("Dandelion" in area.name || "Turret" in area.name):
+	if ("Dandelion" in area.name):
 		area.takeDamage();
 		queue_free();
 	pass # Replace with function body.

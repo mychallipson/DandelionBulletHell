@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://urebi8q7v3yu"]
+
+[ext_resource type="Script" path="res://TitleScreen/TitleScreen.gd" id="1_knh46"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_knh46")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 372.0
+offset_top = 70.0
+offset_right = 800.0
+offset_bottom = 156.0
+theme_override_font_sizes/font_size = 60
+text = "Dandelion Hell"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 355.0
+offset_top = 173.0
+offset_right = 877.0
+offset_bottom = 257.0
+text = "Plant monsters have taken over your lawn and are spreading dandelions. Defend your lawn from being taken over. How long can you last?"
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 523.0
+offset_top = 509.0
+offset_right = 672.0
+offset_bottom = 535.0
+text = "Press Enter to start"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 355.0
+offset_top = 256.0
+offset_right = 988.0
+offset_bottom = 412.0
+text = "Controls: 
+WASD movement
+Click to fire weeding tool towards the mouse
+Yellow seeds spawn dandelions, catch them before they spawn to heal
+White dandelion seeds will hurt you on contact
+Shoot the monsters with the weeder, uproot the dandelions by walking over them"

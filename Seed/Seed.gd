@@ -6,15 +6,17 @@ extends Area2D
 @export var amplitude = 2;
 @export var frequency = 0.5;
 @export var speed = shotSpeed;
-@export var newFlower = false;
 var time = 0;
 var launch = true;
 var launchTime = 1;
+var newFlower = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if newFlower:
-		modulate = "ffff38";
+		$Sprite2D.modulate = "ffff38";
+	speed = randf_range(200, 500);
+	falltime = randf_range(falltime, 4);
 	$Launch.one_shot = true;
 	$Launch.start(launchTime);
 
@@ -36,7 +38,7 @@ func _process(delta):
 func _on_launch_timeout():
 	launch = false;
 	speed = fallSpeed;
-	if newFlower:	
+	if newFlower:
 		$Fall.one_shot = true;
 		$Fall.start(falltime);
 
@@ -48,5 +50,10 @@ func _on_fall_timeout():
 
 
 func _on_body_entered(body):
-	if (body.name == "Player"):
-		body.take_damage();
+	if (body.name == "Player" && launch == false):
+		if (newFlower):
+			GameEngine.seedsCaught += 1;
+			body.heal();
+		else:
+			body.take_damage();
+		queue_free();
