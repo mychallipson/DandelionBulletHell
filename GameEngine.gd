@@ -17,6 +17,7 @@ var dandelionKillCount = 0;
 var turretKillCount = 0;
 var spawnSeparation = 8;
 var seedsCaught = 0;
+var playerPosition;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,6 +68,10 @@ func spawnTurret(newPosition):
 	var newTurret = turretScene.instantiate();
 	newTurret.position = newPosition;
 	add_child(newTurret);
+	
+func vectorToPlayer(objPosition):
+	var vec = playerPosition - objPosition;
+	return vec.normalized();
 	
 func gameOver():
 	for _i in self.get_children():

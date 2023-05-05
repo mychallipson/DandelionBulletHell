@@ -2,12 +2,18 @@ extends CharacterBody2D
 
 @export var speed = 400;
 @export var clampToWindowBorders = true;
-var fireRate = 0.2;
+var fireRate = 0.3;
 var health = 10;
+var maxHealth = 10;
 var invulnTime = 0.5;
 var canTakeDamage = true;
+var healthyFace = preload("res://assets/faceHH.png");
+var damagedFace = preload("res://assets/faceLH.png");
+var almostDeadFace = preload("res://assets/faceNH.png");
+var beesStomped = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$HealthBar.max_value = maxHealth;
 	$Invulnerability.wait_time = invulnTime;
 	$Invulnerability.one_shot = true;
 	pass # Replace with function body.
@@ -20,6 +26,7 @@ func _physics_process(_delta):
 	velocity = velocity.normalized();
 	velocity = velocity * speed;
 	move_and_slide();
+	GameEngine.playerPosition = position;
 	updateHealth();
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) && $GunCD.is_stopped():
@@ -44,20 +51,38 @@ func take_damage():
 	pass
 	
 func heal():
-	health = health+1;
-	health = min(health, 10);
+	if health < maxHealth:
+		health = health+1;
+
+func stompBee():
+	beesStomped += 1;
+	if beesStomped >= 5 && health < maxHealth:
+		heal();
+		beesStomped = 0;
 
 func updateHealth():
 	var healthBar = $HealthBar
 	healthBar.value = health;
 	
-	if health >= 100:
+	if health >= maxHealth:
 		healthBar.visible = false;
 	elif health <= 0:
 		GameEngine.gameOver();
 	else:
 		healthBar.visible = true;
+	updatePlayerSprite();
 
+func updatePlayerSprite():
+	if health >= 7:
+		$Sprite2D.texture = healthyFace;
+		$Sprite2D.modulate = "ffffff";
+	elif health > 2 && health < 7:
+		$Sprite2D.texture = damagedFace;
+		$Sprite2D.modulate = "ffff00";
+	else:
+		$Sprite2D.texture = almostDeadFace;
+		$Sprite2D.modulate = "ff0000";
+		
 
 func _on_invulnerability_timeout():
 	canTakeDamage = true;

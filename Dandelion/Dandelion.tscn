@@ -1,73 +1,148 @@
-[gd_scene load_steps=9 format=3 uid="uid://b817rmi3gr4cd"]
+[gd_scene load_steps=12 format=3 uid="uid://b817rmi3gr4cd"]
 
 [ext_resource type="Script" path="res://Dandelion/Dandelion.gd" id="1_j0pgk"]
-[ext_resource type="Texture2D" uid="uid://bjr1n433j0txy" path="res://assets/Seeder_Idle.png" id="2_bq40p"]
+[ext_resource type="Texture2D" uid="uid://g6q6c4wurmlr" path="res://assets/plant7.png" id="2_gpu5l"]
+[ext_resource type="Texture2D" uid="uid://c06c348sxhnq6" path="res://assets/plant8.png" id="3_bwyyv"]
+[ext_resource type="Texture2D" uid="uid://l76m4mv16sv7" path="res://assets/plant5.png" id="4_hvq1x"]
+[ext_resource type="Texture2D" uid="uid://cdp5wpl07wxkx" path="res://assets/plant6.png" id="5_mc4u4"]
+[ext_resource type="Texture2D" uid="uid://d3jr8kky7bbu1" path="res://assets/plant1.png" id="6_mwlbq"]
+[ext_resource type="Texture2D" uid="uid://b8bqg3b4j8iix" path="res://assets/plant2.png" id="7_qvdht"]
+[ext_resource type="Texture2D" uid="uid://5twklhd1t47i" path="res://assets/plant3.png" id="8_olqox"]
+[ext_resource type="Texture2D" uid="uid://by3t7u0e5n0je" path="res://assets/plant4.png" id="9_r06ee"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8goao"]
-atlas = ExtResource("2_bq40p")
-region = Rect2(0, 33, 96, 31)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3cmy"]
+size = Vector2(61, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c40k3"]
-atlas = ExtResource("2_bq40p")
-region = Rect2(96, 33, 96, 31)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v3hsy"]
-atlas = ExtResource("2_bq40p")
-region = Rect2(192, 33, 96, 31)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x2c6x"]
-atlas = ExtResource("2_bq40p")
-region = Rect2(288, 33, 96, 31)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sfmuf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_amlqy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8goao")
+"texture": ExtResource("2_gpu5l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c40k3")
+"texture": ExtResource("3_bwyyv")
+}],
+"loop": true,
+"name": &"done_grow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hvq1x")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v3hsy")
+"texture": ExtResource("5_mc4u4")
+}],
+"loop": true,
+"name": &"first_shot",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mwlbq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x2c6x")
+"texture": ExtResource("7_qvdht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_olqox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r06ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hvq1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mc4u4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gpu5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwyyv")
 }],
 "loop": false,
-"name": &"idle",
+"name": &"fullGrow",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_qvdht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mwlbq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_olqox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r06ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hvq1x")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gpu5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwyyv")
+}],
+"loop": true,
+"name": &"max_growth",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_hvq1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mc4u4")
+}],
+"loop": true,
+"name": &"second_shot",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_mc4u4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gpu5l")
+}],
+"loop": true,
+"name": &"third_shot",
+"speed": 2.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3cmy"]
-size = Vector2(56, 58)
 
 [node name="Dandelion" type="Area2D"]
 script = ExtResource("1_j0pgk")
 
 [node name="SpreadDelay" type="Timer" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-11, -3)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_sfmuf")
-animation = &"idle"
-frame = 3
-frame_progress = 0.481133
-
 [node name="DandelionBody" type="CollisionShape2D" parent="."]
-position = Vector2(10, -1)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_g3cmy")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -16.0
-offset_top = -44.0
-offset_right = 37.0
-offset_bottom = -32.0
+offset_left = -26.0
+offset_top = -45.0
+offset_right = 27.0
+offset_bottom = -33.0
+size_flags_vertical = 1
 max_value = 10.0
 step = 1.0
 show_percentage = false
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_amlqy")
+animation = &"done_grow"
+speed_scale = 0.5
+
 [connection signal="timeout" from="SpreadDelay" to="." method="_on_spread_delay_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -24,10 +24,11 @@ text = "Time: "
 
 [node name="Time" type="Label" parent="TimeLabel"]
 layout_mode = 0
-offset_left = 51.0
+offset_left = 220.0
 offset_top = -1.0
-offset_right = 91.0
+offset_right = 260.0
 offset_bottom = 25.0
+horizontal_alignment = 2
 
 [node name="SeedsLabel" type="Label" parent="."]
 offset_left = 450.0
@@ -38,33 +39,36 @@ text = "Seeds Caught:"
 
 [node name="SeedsCaught" type="Label" parent="SeedsLabel"]
 layout_mode = 0
-offset_left = 130.0
+offset_left = 220.0
 offset_top = 1.0
-offset_right = 170.0
+offset_right = 260.0
 offset_bottom = 24.0
+horizontal_alignment = 2
 
 [node name="DandelionLabel" type="Label" parent="."]
 offset_left = 450.0
 offset_top = 400.0
 offset_right = 613.0
 offset_bottom = 426.0
-text = "Dandelions Weeded: "
+text = "Bees Stomped"
 
 [node name="DandelionsKilled" type="Label" parent="DandelionLabel"]
 layout_mode = 0
-offset_left = 164.0
-offset_right = 204.0
+offset_left = 220.0
+offset_right = 260.0
 offset_bottom = 23.0
+horizontal_alignment = 2
 
 [node name="MonstersLabel" type="Label" parent="."]
 offset_left = 450.0
 offset_top = 372.0
 offset_right = 575.0
 offset_bottom = 398.0
-text = "Monsters Killed:"
+text = "Dandelions Weeded:"
 
 [node name="MonstersKilled" type="Label" parent="MonstersLabel"]
 layout_mode = 0
-offset_left = 142.0
-offset_right = 182.0
+offset_left = 220.0
+offset_right = 260.0
 offset_bottom = 23.0
+horizontal_alignment = 2

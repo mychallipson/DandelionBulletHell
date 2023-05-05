@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var velocity = 400;
+@export var velocity = 600;
 @export var direction : Vector2;
 
 # Called when the node enters the scene tree for the first time.

@@ -4,11 +4,13 @@ extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Stinger.rotate(3*PI/4 );
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += Vector2(cos(rotation), -sin(rotation)) * velocity * delta;
+	position += transform.x * velocity * delta;
+	position += transform.y * velocity * delta;
 	pass
 
 

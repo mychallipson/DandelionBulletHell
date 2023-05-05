@@ -8,8 +8,7 @@ extends Area2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var delay = randf_range(0,1.5);
-	$SpreadDelay.one_shot = true;
-	$SpreadDelay.start(delay);
+	$AnimatedSprite2D.play("fullGrow");
 	pass # Replace with function body.
 
 
@@ -24,28 +23,21 @@ func random_rotations():
 		rotations.append(randf_range(min_rotation, max_rotation));
 	return rotations;
 
-func distributed_rotations():
-	var rotations = [];
+func shootSeed():
+	var rotations = random_rotations();
+	var flowerIndex = randi_range(0,numSeeds-1);
 	for i in range(0, numSeeds):
-		var fraction = float(i) / float(numSeeds);
-		var difference = max_rotation - min_rotation;
-		rotations.append((fraction * difference) + min_rotation);
-	return rotations;
-
+		GameEngine.spawnSeed(position, rotations[i], i == flowerIndex);
 
 func _on_spread_delay_timeout():
-	$AnimatedSprite2D.play("idle");
+	shootSeed();
 	pass # Replace with function body.
 
 
 func _on_animated_sprite_2d_animation_finished():
-	var rotations = random_rotations();
-	var flowerIndex = randi_range(0,numSeeds);
-	for i in range(0, numSeeds):
-		GameEngine.spawnSeed(position, rotations[i], i == flowerIndex);
-	var delay = 2;
-	$AnimatedSprite2D.pause();
-	$SpreadDelay.start(delay);
+	$AnimatedSprite2D.play("done_grow");
+	shootSeed();
+	$SpreadDelay.start(3);
 	pass # Replace with function body.
 	
 func takeDamage():
@@ -65,8 +57,3 @@ func updateHealth():
 	else:
 		healthBar.visible = true;
 
-
-func _on_body_entered(body):
-	if body.name == "Player":
-		body.take_damage();
-	pass # Replace with function body.
