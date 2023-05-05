@@ -1,2 +1,8 @@
 # Godot 4+ specific ignores
 .godot/
+assets/Fireball.png
+assets/Fireball.png.import
+assets/Grass.png
+assets/Grass.png.import
+assets/Seeder_Idle.png
+assets/Seeder_Idle.png.import
