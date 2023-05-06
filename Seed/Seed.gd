@@ -44,7 +44,7 @@ func _on_launch_timeout():
 
 
 func _on_fall_timeout():
-	if $ScreenVisibility.is_on_screen():
+	if GameEngine.isWithinSpawnBorders(position):
 		GameEngine.spawnTurret(position);
 		queue_free();
 

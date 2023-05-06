@@ -50,7 +50,7 @@ offset_left = 450.0
 offset_top = 400.0
 offset_right = 613.0
 offset_bottom = 426.0
-text = "Bees Stomped"
+text = "Bees Stomped:"
 
 [node name="DandelionsKilled" type="Label" parent="DandelionLabel"]
 layout_mode = 0

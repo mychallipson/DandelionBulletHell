@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnicbosqt57du"]
+
+[ext_resource type="Script" path="res://PauseMenu/Pause.gd" id="1_x7l50"]
+
+[node name="Pause" type="Node2D"]
+script = ExtResource("1_x7l50")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+offset_left = 469.0
+offset_top = 181.0
+offset_right = 645.0
+offset_bottom = 253.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Paused"
+
+[node name="TimeLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 440.0
+offset_top = 403.0
+offset_right = 551.0
+offset_bottom = 429.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Current Time: "
+
+[node name="Time" type="Label" parent="TimeLabel"]
+z_index = 1
+layout_mode = 0
+offset_left = 237.0
+offset_top = -1.0
+offset_right = 277.0
+offset_bottom = 25.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+
+[node name="SeedsLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 440.0
+offset_top = 490.0
+offset_right = 613.0
+offset_bottom = 516.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Current Seeds Caught:"
+
+[node name="SeedsCaught" type="Label" parent="SeedsLabel"]
+z_index = 1
+layout_mode = 0
+offset_left = 237.0
+offset_top = 1.0
+offset_right = 277.0
+offset_bottom = 24.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+
+[node name="DandelionLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 440.0
+offset_top = 460.0
+offset_right = 619.0
+offset_bottom = 486.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Current Bees Stomped:"
+
+[node name="DandelionsKilled" type="Label" parent="DandelionLabel"]
+z_index = 1
+layout_mode = 0
+offset_left = 237.0
+offset_right = 277.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+
+[node name="MonstersLabel" type="Label" parent="."]
+z_index = 1
+offset_left = 440.0
+offset_top = 432.0
+offset_right = 663.0
+offset_bottom = 458.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Current Dandelions Weeded:"
+
+[node name="MonstersKilled" type="Label" parent="MonstersLabel"]
+z_index = 1
+layout_mode = 0
+offset_left = 237.0
+offset_right = 277.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="."]
+z_index = 1
+offset_left = 482.0
+offset_top = 272.0
+offset_right = 639.0
+offset_bottom = 298.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Press ESC to resume"
+
+[node name="InputDelay" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.568627)

@@ -6,6 +6,7 @@ extends Node2D
 @onready var seedBulletScene = preload("res://Bullets/SeedBullet.tscn");
 @onready var turretScene = preload("res://Turret/Turret.tscn");
 @onready var gameOverScene = preload("res://GameOver/GameOver.tscn");
+@onready var pauseScene = preload("res://PauseMenu/Pause.tscn").instantiate();
 @onready var screenBorders = get_viewport().get_visible_rect().size;
 
 @export var spawnCount = 2;
@@ -18,14 +19,28 @@ var turretKillCount = 0;
 var spawnSeparation = 8;
 var seedsCaught = 0;
 var playerPosition;
+var padding = 16;
+var minX = padding;
+var minY = padding;
+var maxX: int;
+var maxY: int;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	maxX = screenBorders.x + padding;
+	maxY = screenBorders.y - padding
 	pass
+
+func isWithinSpawnBorders(position):
+	if position.x >= minX && position.x <= maxX && position.y >= minY && position.y <= maxY:
+		return true;
+	else:
+		return false
+	
 
 func startGame():
 	for i in range(0, spawnCount):
-		var pos = Vector2(randi_range(0, screenBorders.x),randi_range(0, screenBorders.y));
+		var pos = Vector2(randi_range(minX, maxX),randi_range(minY, maxY));
 		spawnDandelion(pos);
 
 func spawnSeed(newPosition, seedRotation, newFlower):
@@ -80,6 +95,7 @@ func gameOver():
 	get_tree().paused = true;
 	pass;
 		
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	spawnTimer += delta;
@@ -90,3 +106,5 @@ func _process(delta):
 		spawnTimer = 0;
 		spawnSeparation = max(spawnSeparation - 1, 3);
 	pass
+
+

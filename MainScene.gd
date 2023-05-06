@@ -1,0 +1,27 @@
+extends Node2D
+
+var isPaused = false;
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Node.PROCESS_MODE_ALWAYS;
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _input(event):
+	if event.is_action_released("ui_esc"):
+		if isPaused:
+			$Pause.hide();
+			get_tree().paused = false;
+			isPaused = false;
+		else:
+			$Pause.loadValues();
+			$Pause.show();
+			get_tree().paused = true;
+			isPaused = true;
+		
+	
+	
