@@ -5,7 +5,7 @@ extends CharacterBody2D
 var fireRate = 0.3;
 var health = 10;
 var maxHealth = 10;
-var invulnTime = 0.5;
+var invulnTime = 0.4;
 var canTakeDamage = true;
 var healthyFace = preload("res://assets/faceHH.png");
 var damagedFace = preload("res://assets/faceLH.png");
@@ -48,6 +48,7 @@ func take_damage():
 		health = health-1;
 		canTakeDamage = false;
 		$Invulnerability.start();
+		$Damage.play();
 	pass
 	
 func heal():
@@ -56,7 +57,7 @@ func heal():
 
 func stompBee():
 	beesStomped += 1;
-	if beesStomped >= 5 && health < maxHealth:
+	if beesStomped >= GameEngine.level && health < maxHealth:
 		heal();
 		beesStomped = 0;
 

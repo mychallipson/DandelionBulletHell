@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b817rmi3gr4cd"]
+[gd_scene load_steps=13 format=3 uid="uid://b817rmi3gr4cd"]
 
 [ext_resource type="Script" path="res://Dandelion/Dandelion.gd" id="1_j0pgk"]
 [ext_resource type="Texture2D" uid="uid://g6q6c4wurmlr" path="res://assets/plant7.png" id="2_gpu5l"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b8bqg3b4j8iix" path="res://assets/plant2.png" id="7_qvdht"]
 [ext_resource type="Texture2D" uid="uid://5twklhd1t47i" path="res://assets/plant3.png" id="8_olqox"]
 [ext_resource type="Texture2D" uid="uid://by3t7u0e5n0je" path="res://assets/plant4.png" id="9_r06ee"]
+[ext_resource type="AudioStream" uid="uid://crmk2qck3xbtj" path="res://assets/poof3.mp3" id="10_qnepu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3cmy"]
 size = Vector2(61, 64)
@@ -135,14 +136,17 @@ offset_top = -45.0
 offset_right = 27.0
 offset_bottom = -33.0
 size_flags_vertical = 1
-max_value = 10.0
+max_value = 5.0
 step = 1.0
 show_percentage = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_amlqy")
-animation = &"done_grow"
-speed_scale = 0.5
+animation = &"fullGrow"
+
+[node name="Poof" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_qnepu")
+volume_db = 1.874
 
 [connection signal="timeout" from="SpreadDelay" to="." method="_on_spread_delay_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

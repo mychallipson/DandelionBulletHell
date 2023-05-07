@@ -26,6 +26,7 @@ func _process(delta):
 #	return rotations;
 
 func _on_shoot_timer_timeout():
+	$Stinger.play();
 	GameEngine.shootSeedBullet(position, initialRot + randf_range(-PI / 8, PI / 8));
 #	initialRot = randf_range(0,PI/(numShots/2));
 #	var rotations = distributed_rotations();

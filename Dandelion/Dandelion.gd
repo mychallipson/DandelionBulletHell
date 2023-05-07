@@ -3,7 +3,7 @@ extends Area2D
 @export var numSeeds = 5;
 @export var min_rotation = PI/4;
 @export var max_rotation = 3*PI/4 ;
-@export var health = 10;
+@export var health = 5;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,6 +24,7 @@ func random_rotations():
 	return rotations;
 
 func shootSeed():
+	$Poof.play();
 	var rotations = random_rotations();
 	var flowerIndex = randi_range(0,numSeeds-1);
 	for i in range(0, numSeeds):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://clkft7lmulwyp"]
+[gd_scene load_steps=8 format=3 uid="uid://clkft7lmulwyp"]
 
 [ext_resource type="Script" path="res://Turret/Turret.gd" id="1_phglx"]
 [ext_resource type="Texture2D" uid="uid://c12f7gn5pr2tg" path="res://assets/hive.png" id="2_kmvfg"]
 [ext_resource type="Texture2D" uid="uid://dyks81ufuju8u" path="res://assets/beeP1.png" id="3_yg4b2"]
 [ext_resource type="Texture2D" uid="uid://cjbftyyaqjqyl" path="res://assets/beeP2.png" id="4_l1lbv"]
+[ext_resource type="AudioStream" uid="uid://bxfd0hg7xkcxi" path="res://assets/stinger.mp3" id="5_ugttx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x1xb5"]
 size = Vector2(47, 46)
@@ -55,6 +56,10 @@ animation = &"flapping"
 [node name="Hive" type="Sprite2D" parent="Turret"]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_kmvfg")
+
+[node name="Stinger" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ugttx")
+volume_db = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmexuw7wgf5ji"]
+[gd_scene load_steps=7 format=3 uid="uid://bmexuw7wgf5ji"]
 
 [ext_resource type="Script" path="res://MainScene.gd" id="1_ao2bg"]
 [ext_resource type="PackedScene" uid="uid://bnnnxsytvcren" path="res://Player/Player.tscn" id="1_r00i2"]
 [ext_resource type="Texture2D" uid="uid://bc8s3vae3xjne" path="res://assets/grassBig.png" id="3_gs5s3"]
 [ext_resource type="PackedScene" uid="uid://cnicbosqt57du" path="res://PauseMenu/Pause.tscn" id="3_xpwwh"]
-[ext_resource type="AudioStream" uid="uid://xmffsob6e46t" path="res://assets/532142__patchytherat__backyard-sounds-birds-windchimes-melting-snow-1.wav" id="5_66iaj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tg6by"]
 texture = ExtResource("3_gs5s3")
@@ -31,6 +30,15 @@ layer_0/tile_data = PackedInt32Array(0, 6, 0, 65536, 6, 0, 131072, 6, 0, 196608,
 [node name="Pause" parent="." instance=ExtResource("3_xpwwh")]
 visible = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_66iaj")
-autoplay = true
+[node name="Level" type="Label" parent="."]
+offset_left = 13.0
+offset_top = 11.0
+offset_right = 62.0
+offset_bottom = 37.0
+text = "Level: "
+
+[node name="LevelText" type="Label" parent="Level"]
+layout_mode = 0
+offset_left = 47.0
+offset_right = 87.0
+offset_bottom = 23.0

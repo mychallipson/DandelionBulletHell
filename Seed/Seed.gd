@@ -1,11 +1,10 @@
 extends Area2D
 
-@export var shotSpeed = 300;
-@export var fallSpeed = 100;
+@export var fallSpeed = 200;
 @export var falltime = 2;
-@export var amplitude = 2;
+@export var amplitude = 1.5;
 @export var frequency = 0.5;
-@export var speed = shotSpeed;
+@export var speed = 300;
 var time = 0;
 var launch = true;
 var launchTime = 1;
@@ -14,7 +13,7 @@ var newFlower = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if newFlower:
-		$Sprite2D.modulate = "ffff38";
+		$Sprite2D.modulate = "ff00ff";
 	speed = randf_range(200, 500);
 	falltime = randf_range(falltime, 4);
 	$Launch.one_shot = true;
