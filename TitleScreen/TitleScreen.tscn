@@ -46,7 +46,7 @@ Catching yellow seeds heals the player
 Every 5 bees you stomp heals you
 Bees shoot stingers which damage the player"
 
-[node name="Button" type="Button" parent="."]
+[node name="Play" type="Button" parent="."]
 offset_left = 418.0
 offset_top = 311.0
 offset_right = 726.0
@@ -54,7 +54,7 @@ offset_bottom = 364.0
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Tutorial" type="Button" parent="."]
 offset_left = 421.0
 offset_top = 405.0
 offset_right = 726.0
@@ -62,4 +62,4 @@ offset_bottom = 458.0
 theme_override_font_sizes/font_size = 32
 text = "Tutorial"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_button_pressed"]

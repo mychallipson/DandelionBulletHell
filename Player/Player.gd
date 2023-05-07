@@ -76,13 +76,10 @@ func updateHealth():
 func updatePlayerSprite():
 	if health >= 7:
 		$Sprite2D.texture = healthyFace;
-		$Sprite2D.modulate = "ffffff";
 	elif health > 2 && health < 7:
 		$Sprite2D.texture = damagedFace;
-		$Sprite2D.modulate = "ffff00";
 	else:
 		$Sprite2D.texture = almostDeadFace;
-		$Sprite2D.modulate = "ff0000";
 		
 
 func _on_invulnerability_timeout():

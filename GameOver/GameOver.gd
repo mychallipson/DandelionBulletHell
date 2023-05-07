@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var MainScene = preload("res://MainScene.tscn");
+@onready var TitleScreenScene = preload("res://TitleScreen/TitleScreen.tscn");
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$TimeLabel/Time.text = str(snapped(GameEngine.elapsedTime,0.01));
@@ -14,6 +14,5 @@ func _ready():
 
 func _on_button_pressed():
 	get_tree().paused = false;
-	get_tree().change_scene_to_packed(MainScene);
-	GameEngine.startGame();
+	get_tree().change_scene_to_packed(TitleScreenScene);
 	pass # Replace with function body.

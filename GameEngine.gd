@@ -10,7 +10,7 @@ extends Node2D
 @onready var screenBorders = get_viewport().get_visible_rect().size;
 
 @export var spawnCount = 4;
-var isGameOver = false;
+var isGameOver = true;
 var spawnTimer = 0;
 var elapsedTime = 0;
 var dandelionKillCount = 0;
