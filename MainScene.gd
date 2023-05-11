@@ -13,8 +13,8 @@ func _process(delta):
 	pass
 
 func _input(event):
-	if event.is_action_released("ui_esc"):
-		if isPaused:
+	if event.is_action_pressed("ui_esc"):
+		if isPaused && $Pause.visible:
 			$Pause.hide();
 			get_tree().paused = false;
 			isPaused = false;

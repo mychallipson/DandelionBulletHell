@@ -1,6 +1,6 @@
 extends Node2D
 
-
+@export var restart = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED;
@@ -15,5 +15,12 @@ func loadValues():
 
 func _input(event):
 	if event.is_action_pressed("ui_esc"):
-		hide();
 		get_tree().paused = false;
+
+
+func _on_button_pressed():
+	GameEngine.clearScene();
+	GameEngine.startGame();
+	hide();
+	get_tree().paused = false;
+	pass # Replace with function body.

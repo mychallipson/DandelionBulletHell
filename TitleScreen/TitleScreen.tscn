@@ -62,4 +62,5 @@ offset_bottom = 458.0
 theme_override_font_sizes/font_size = 32
 text = "Tutorial"
 
-[connection signal="pressed" from="Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Tutorial" to="." method="_on_tutorial_pressed"]

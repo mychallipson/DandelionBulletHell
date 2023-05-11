@@ -6,6 +6,8 @@ extends Node2D
 @onready var seedBulletScene = preload("res://Bullets/SeedBullet.tscn");
 @onready var turretScene = preload("res://Turret/Turret.tscn");
 @onready var gameOverScene = preload("res://GameOver/GameOver.tscn");
+@onready var TutorialGameScene = preload("res://Tutorial/Tutorial.tscn");
+@onready var TitleScreenScene = preload("res://TitleScreen/TitleScreen.tscn");
 @onready var pauseScene = preload("res://PauseMenu/Pause.tscn").instantiate();
 @onready var screenBorders = get_viewport().get_visible_rect().size;
 
@@ -102,12 +104,23 @@ func vectorToPlayer(objPosition):
 	return vec.normalized();
 	
 func gameOver():
-	for _i in self.get_children():
-		_i.queue_free();
+	clearScene();
 	get_tree().change_scene_to_packed(gameOverScene);
 	get_tree().paused = true;
 	isGameOver = true;
 	pass;
+	
+func toTutorial():
+	get_tree().change_scene_to_packed(TutorialGameScene);
+	pass;
+	
+func toTitle():
+	get_tree().change_scene_to_packed(TitleScreenScene);
+	pass;
+	
+func clearScene():
+	for _i in self.get_children():
+		_i.queue_free();
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

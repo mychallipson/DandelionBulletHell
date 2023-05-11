@@ -6,6 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bing7"]
 size = Vector2(22, 26)
 
+[sub_resource type="Animation" id="Animation_mgkvu"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_gndkc"]
 resource_name = "SpecialSeed"
 length = 0.2
@@ -22,9 +25,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Color(1, 1, 1, 1), Color(1, 0, 1, 1), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_mgkvu"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xb41k"]
 _data = {
